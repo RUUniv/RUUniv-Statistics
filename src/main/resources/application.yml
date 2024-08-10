@@ -1,7 +1,7 @@
-spring :
-  application :
-    name : ruuniv-statistics-server
-  data :
+spring:
+  application:
+    name: ruuniv-statistics-server
+  data:
     mongodb:
       host: localhost
       port: 27017
@@ -9,11 +9,11 @@ spring :
       username: test
       password: test
       database: admin
-  datasource :
-    driver-class-name : ${DB_CLASS}
-    url : ${DB_URL}
-    username : ${DB_USERNAME}
-    password : ${DB_PASSWORD}
+  datasource:
+    driver-class-name: ${DB_CLASS}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     hibernate:
@@ -23,3 +23,12 @@ spring :
         format_sql: true
     generate-ddl: true
     database: mysql
+
+  kafka:
+    bootstrap-servers: localhost:10000,localhost:10001,localhost:10002
+    template:
+      default-topic: collect-api-statistics
+    consumer:
+      group-id: statistics
+
+

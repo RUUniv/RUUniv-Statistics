@@ -17,10 +17,12 @@ public class Statistics extends BaseTimeEntity {
 
     @Id
     private String id;
-
+    
     private Method method;
 
     private Api api;
+
+    private int status;
 
     private String apiKey;
 }
