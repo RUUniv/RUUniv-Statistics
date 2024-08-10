@@ -1,0 +1,25 @@
+spring :
+  application :
+    name : ruuniv-statistics-server
+  data :
+    mongodb:
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: test
+      password: test
+      database: admin
+  datasource :
+    driver-class-name : ${DB_CLASS}
+    url : ${DB_URL}
+    username : ${DB_USERNAME}
+    password : ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+    database: mysql
