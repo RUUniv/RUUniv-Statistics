@@ -7,6 +7,7 @@ import com.ruunivstatisticsserver.app.statistics.service.StatisticsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,8 +16,12 @@ import org.springframework.stereotype.Component;
 public class KafkaStatisticsListener {
     private final StatisticsService statisticsService;
 
-    @KafkaListener(topics = "COLLECT-STATISTICS")
+    @RetryableTopic(
+            attempts = "2"
+    )
+    @KafkaListener(topics = "COLLECT_STATISTICS")
     public void handleCollectStatistics(String payload) throws JsonProcessingException {
+        log.info("[Kafka Listener] : COLLECT_STATISTICS START");
         ObjectMapper objectMapper = new ObjectMapper();
         CollectStatisticsEvent event = objectMapper.readValue(payload, CollectStatisticsEvent.class);
 
