@@ -18,7 +18,6 @@ public class StatisticsService {
 
     @Transactional
     public void collectionStatistics(String apiUrl, String method, int status, String apiKey) {
-        log.info("asd {}", Api.createByUrlAndMethod(apiUrl, method));
         Statistics statistics = Statistics.builder()
                 .api(Api.createByUrlAndMethod(apiUrl, method))
                 .method(Method.valueOf(method))

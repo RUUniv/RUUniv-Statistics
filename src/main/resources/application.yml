@@ -29,6 +29,6 @@ spring:
     template:
       default-topic: collect-api-statistics
     consumer:
-      group-id: statistics
+      group-id: ruuniv-statistics
 
 
