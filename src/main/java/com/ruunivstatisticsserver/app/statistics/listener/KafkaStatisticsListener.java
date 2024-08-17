@@ -21,6 +21,7 @@ public class KafkaStatisticsListener {
     )
     @KafkaListener(topics = "COLLECT_STATISTICS")
     public void handleCollectStatistics(String payload) throws JsonProcessingException {
+
         log.info("[Kafka Listener] : COLLECT_STATISTICS START");
         ObjectMapper objectMapper = new ObjectMapper();
         CollectStatisticsEvent event = objectMapper.readValue(payload, CollectStatisticsEvent.class);
