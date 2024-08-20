@@ -8,7 +8,7 @@ eureka:
     service-url:
       defaultZone: ${EUREKA_URL}
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: ${HOST}
 
 spring:
   application:
