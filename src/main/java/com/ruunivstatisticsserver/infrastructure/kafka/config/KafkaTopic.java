@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public enum KafkaTopic {
-    COLLECT_STATISTICS;
+    COLLECT_API_KEY_STATISTICS;
 }
