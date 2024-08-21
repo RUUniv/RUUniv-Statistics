@@ -16,6 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class StatisticsService {
     private final StatisticsRepository statisticsRepository;
 
+    public void getStatisticsInfo() {
+
+    }
+
     @Transactional
     public void collectionStatistics(String apiUrl, String method, int status, String apiKey) {
         Statistics statistics = Statistics.builder()
