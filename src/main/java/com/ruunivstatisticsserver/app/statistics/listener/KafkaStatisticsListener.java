@@ -19,7 +19,7 @@ public class KafkaStatisticsListener {
     @RetryableTopic(
             attempts = "2"
     )
-    @KafkaListener(topics = "COLLECT_API_KEY_STATISTICS")
+    @KafkaListener(topics = "COLLECT_STATISTICS")
     public void handleCollectStatistics(String payload) throws JsonProcessingException {
 
         log.info("[Kafka Listener] : COLLECT_STATISTICS START");
