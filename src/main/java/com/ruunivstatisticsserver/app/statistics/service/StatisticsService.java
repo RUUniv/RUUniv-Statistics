@@ -4,6 +4,7 @@ import com.ruunivstatisticsserver.app.statistics.entity.Api;
 import com.ruunivstatisticsserver.app.statistics.entity.Method;
 import com.ruunivstatisticsserver.app.statistics.entity.Statistics;
 import com.ruunivstatisticsserver.app.statistics.repository.StatisticsRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class StatisticsService {
     private final StatisticsRepository statisticsRepository;
 
-    public void getStatisticsInfo() {
-
+    public void getStatisticsInfoByMonth(String apiKey, String month) {
+        List<Statistics> statistics = statisticsRepository.findAllByApiKey(apiKey);
     }
 
     @Transactional
