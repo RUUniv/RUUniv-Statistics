@@ -1,5 +1,6 @@
 package com.ruunivstatisticsserver.app.statistics.service;
 
+import com.ruunivstatisticsserver.app.statistics.dto.StatisticsResponse.StatisticsInfo;
 import com.ruunivstatisticsserver.app.statistics.entity.Api;
 import com.ruunivstatisticsserver.app.statistics.entity.Method;
 import com.ruunivstatisticsserver.app.statistics.entity.Statistics;
@@ -25,7 +26,7 @@ public class StatisticsService {
     }
 
     @Transactional
-    public void collectionStatistics(String apiUrl, String method, int status, String apiKey) {
+    public StatisticsInfo collectionStatistics(String apiUrl, String method, int status, String apiKey) {
         Statistics statistics = Statistics.builder()
                 .api(Api.createByUrlAndMethod(apiUrl, method))
                 .method(Method.valueOf(method))
@@ -33,6 +34,6 @@ public class StatisticsService {
                 .apiKey(apiKey)
                 .build();
 
-        mongoTemplate.save(statistics, "statistics");
+        return StatisticsInfo.of(mongoTemplate.save(statistics, "statistics"));
     }
 }
