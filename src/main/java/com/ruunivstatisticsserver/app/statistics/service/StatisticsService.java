@@ -4,11 +4,13 @@ import com.ruunivstatisticsserver.app.statistics.dto.StatisticsResponse.Statisti
 import com.ruunivstatisticsserver.app.statistics.entity.Api;
 import com.ruunivstatisticsserver.app.statistics.entity.Method;
 import com.ruunivstatisticsserver.app.statistics.entity.Statistics;
-import com.ruunivstatisticsserver.app.statistics.repository.StatisticsRepository;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,12 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @Slf4j
 public class StatisticsService {
-    private final StatisticsRepository statisticsRepository;
     private final MongoTemplate mongoTemplate;
 
-    public void getStatisticsInfoByMonth(String apiKey, String month) {
-        List<Statistics> statistics = statisticsRepository.findAllByApiKey(apiKey);
+    public List<StatisticsInfo> getStatisticsInfoByMonth(String apiKey, int month) {
+        LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), month, 1);
+        LocalDate endDate = startDate.plusMonths(1);
 
+        Query query = new Query();
+        query.addCriteria(Criteria.where("apiKey").is(apiKey));
+        query.addCriteria(Criteria.where("createdDate").gte(startDate).lt(endDate));
+
+        List<Statistics> statistics = mongoTemplate.find(query, Statistics.class);
+
+        return statistics.stream().map(StatisticsInfo::of).toList();
     }
 
     @Transactional
