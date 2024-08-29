@@ -7,6 +7,7 @@ import com.ruunivstatisticsserver.app.statistics.repository.StatisticsRepository
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class StatisticsService {
     private final StatisticsRepository statisticsRepository;
+    private final MongoTemplate mongoTemplate;
 
     public void getStatisticsInfoByMonth(String apiKey, String month) {
         List<Statistics> statistics = statisticsRepository.findAllByApiKey(apiKey);
+
     }
 
     @Transactional
@@ -30,6 +33,6 @@ public class StatisticsService {
                 .apiKey(apiKey)
                 .build();
 
-        statisticsRepository.save(statistics);
+        mongoTemplate.save(statistics, "statistics");
     }
 }
