@@ -13,6 +13,7 @@ eureka:
 spring:
   application:
     name: ruuniv-statistics-server
+
   data:
     mongodb:
       host: ${MONGO_HOST}
