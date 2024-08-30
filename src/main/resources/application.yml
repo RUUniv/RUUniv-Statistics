@@ -15,13 +15,14 @@ spring:
     name: ruuniv-statistics-server
   data:
     mongodb:
-      #      host: ${MONGO_HOST}
-      #      port: ${MONGO_PORT}
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
       authentication-database: admin
-      #      username: ${MONGO_USERNAME}
-      #      password: ${MONGO_PASSWORD}
-      #      database: ${MONGO_DATABASE}
-      uri: ${MONGO_URI}
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
+      database: ${MONGO_DATABASE}
+      auto-index-creation: true
+  #      uri: ${MONGO_URI}
   #  datasource:
   #    driver-class-name: ${DB_CLASS}
   #    url: ${DB_URL}

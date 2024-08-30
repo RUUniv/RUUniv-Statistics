@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 public enum Api {
-    CREATE_VERIFICATION("/v1/verification/email", "POST"),
     VERIFY_STUDENT("/v1/verification/email/verify", "POST"),
+    CREATE_VERIFICATION("/v1/verification/email", "POST"),
     DELETE_VERIFIED_STUDENT("/v1/verification/email/", "DELETE"),
     DELETE_VERIFIED_STUDENTS("/v1/verification/email", "DELETE"),
     CHECK_SUPPORTED_UNIVERSITY("/v1/verification/univ/", "GET"),

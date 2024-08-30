@@ -1,6 +1,5 @@
 package com.ruunivstatisticsserver.app.statistics.api;
 
-import com.ruunivstatisticsserver.app.statistics.dto.StatisticsResponse.StatisticsInfo;
 import com.ruunivstatisticsserver.app.statistics.dto.StatisticsResponse.StatisticsMonthInfo;
 import com.ruunivstatisticsserver.app.statistics.service.StatisticsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,17 +22,20 @@ public class StatisticsController {
 
     @GetMapping()
     public void test() {
-        StatisticsInfo statisticsInfo = statisticsService.collectionStatistics("/v1/verification/univ", "GET", 500,
-                "asd");
-        log.info("{} {} {}", statisticsInfo.getApi(), statisticsInfo.getStatus(), statisticsInfo.getMethod());
+        for (int i = 0; i < 100; i++) {
+            statisticsService.collectionStatistics("/v1/verification/email", "GET", 200, "asdf");
+        }
 
     }
 
     @GetMapping("/{apiKey}")
     public ResponseEntity<StatisticsMonthInfo> getStatisticsMonthInfo(@PathVariable String apiKey,
                                                                       @RequestParam int month) {
+        long l = System.currentTimeMillis();
         StatisticsMonthInfo statisticsInfoByMonth = statisticsService.getStatisticsInfoByMonth(apiKey, month);
+        long l2 = System.currentTimeMillis();
 
+        log.info("{}", (l2 - l) / 1000);
         return ResponseEntity.ok(statisticsInfoByMonth);
     }
 }
