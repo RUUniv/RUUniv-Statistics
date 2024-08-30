@@ -1,5 +1,6 @@
 package com.ruunivstatisticsserver.app.batch;
 
+import com.ruunivstatisticsserver.app.statistics.entity.Statistics;
 import com.ruunivstatisticsserver.app.statistics.entity.StatisticsDetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class ComputeStatisticsDetailJobConfig {
     @Bean
     public Step withDrawUserStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("computeStatisticsDetailStep", jobRepository)
-                .<StatisticsDetail, StatisticsDetail>chunk(500, transactionManager)
+                .<Statistics, StatisticsDetail>chunk(500, transactionManager)
                 .reader(computeStatisticsDetailReader)
                 .writer(computeStatisticsDetailWriter)
                 .build();
