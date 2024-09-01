@@ -16,5 +16,4 @@ public class MongoConfig {
     public MongoCustomConversions customConversions() {
         return new MongoCustomConversions(List.of(dateToLocalDateTimeKstConverter, localDateTimeToDateKstConverter));
     }
-
 }

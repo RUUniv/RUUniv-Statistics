@@ -13,7 +13,11 @@ eureka:
 spring:
   application:
     name: ruuniv-statistics-server
-
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: true
   data:
     mongodb:
       host: ${MONGO_HOST}
@@ -23,21 +27,21 @@ spring:
       password: ${MONGO_PASSWORD}
       database: ${MONGO_DATABASE}
       auto-index-creation: true
-  #      uri: ${MONGO_URI}
-  #  datasource:
-  #    driver-class-name: ${DB_CLASS}
-  #    url: ${DB_URL}
-  #    username: ${DB_USERNAME}
-  #    password: ${DB_PASSWORD}
-  #  jpa:
-  #    show-sql: true
-  #    hibernate:
-  #      ddl-auto: update
-  #    properties:
-  #      hibernate:
-  #        format_sql: true
-  #    generate-ddl: true
-  #    database: mysql
+    #      uri: ${MONGO_URI}
+  datasource:
+    driver-class-name: ${DB_CLASS}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+    database: mysql
 
   kafka:
     bootstrap-servers: ${KAFKA_SERVERS}
