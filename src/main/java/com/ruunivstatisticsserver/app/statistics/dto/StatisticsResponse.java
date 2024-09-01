@@ -37,6 +37,8 @@ public class StatisticsResponse {
     @AllArgsConstructor
     @Builder
     public static class StatisticsMonthInfo {
+        private String apiKey;
+        private int month;
         private List<StatisticsStatusPerApiMonthInfo> statisticsMonthInfo;
 
     }
