@@ -17,7 +17,7 @@ public class ComputeStatisticsScheduler {
     private final JobLauncher jobLauncher;
     private final Job job;
 
-    @Scheduled(cron = "0 14 16 * * *")
+    @Scheduled(cron = "0 10 0 * * *")
     public void computeStatisticsDetailSchedule()
             throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         jobLauncher.run(job, new JobParameters());
