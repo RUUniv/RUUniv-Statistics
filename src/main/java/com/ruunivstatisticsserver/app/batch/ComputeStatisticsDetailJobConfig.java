@@ -38,7 +38,7 @@ public class ComputeStatisticsDetailJobConfig {
     @Setter
     private StepExecution stepExecution;
 
-    @Bean
+    @Bean(name = "computeStatisticsDetailJob")
     public Job computeStatisticsDetailJob(JobRepository jobRepository,
                                           @Qualifier("computeStep") Step computeStatisticsDetailStep)
             throws Exception {
