@@ -65,7 +65,7 @@ public class ComputeStatisticsDetailJobConfig {
     @Bean
     public MongoCursorItemReader<Statistics> computeStatisticsDetailReader() {
         MongoCursorItemReader<Statistics> itemReader = new MongoCursorItemReader<>();
-        LocalDateTime endDate = LocalDateTime.now().minusDays(2);
+        LocalDateTime endDate = LocalDateTime.now();
         LocalDateTime startDate = LocalDateTime.of(endDate.getYear(), endDate.getMonthValue(),
                 endDate.getDayOfMonth() - 1, 0, 0);
 
