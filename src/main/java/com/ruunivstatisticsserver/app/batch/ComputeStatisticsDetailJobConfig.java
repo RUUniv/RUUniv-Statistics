@@ -86,15 +86,24 @@ public class ComputeStatisticsDetailJobConfig {
     public ItemProcessor<Statistics, Statistics> computeStatisticsDetailProcessor() throws Exception {
         return item -> {
             log.info("COMPUTE PROCESSOR DETAIL {}", item.getApiKey());
+
             ExecutionContext context = stepExecution.getExecutionContext();
             StatisticsDetail detail = (StatisticsDetail) context.get(EXECUTION_PREFIX + item.getApiKey());
 
             if (detail == null) {
-                detail = StatisticsDetail.builder()
-                        .month(item.getCreatedDate().getMonthValue())
-                        .apiKey(item.getApiKey())
-                        .perApiInfo(new ArrayList<>())
-                        .build();
+                Query query = new Query();
+                query.addCriteria(Criteria.where("month").is(item.getCreatedDate().getMonthValue())
+                        .and("apiKey").is(item.getApiKey()));
+
+                detail = mongoTemplate.findOne(query, StatisticsDetail.class);
+
+                if (detail == null) {
+                    detail = StatisticsDetail.builder()
+                            .month(item.getCreatedDate().getMonthValue())
+                            .apiKey(item.getApiKey())
+                            .perApiInfo(new ArrayList<>())
+                            .build();
+                }
             }
 
             detail.addPerApiInfo(item.getApi());
