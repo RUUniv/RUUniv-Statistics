@@ -24,7 +24,7 @@ public class StatisticsResponse {
         @Schema(description = "응답코드", example = "200")
         private int status;
 
-        public static StatisticsInfo of(Statistics statistics) {
+        public static StatisticsInfo from(Statistics statistics) {
             return StatisticsInfo.builder()
                     .api(statistics.getApi())
                     .status(statistics.getStatus())
