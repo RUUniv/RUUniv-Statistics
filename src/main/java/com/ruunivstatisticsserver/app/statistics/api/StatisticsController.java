@@ -1,7 +1,7 @@
 package com.ruunivstatisticsserver.app.statistics.api;
 
 import com.ruunivstatisticsserver.app.statistics.dto.StatisticsResponse.StatisticsMonthInfo;
-import com.ruunivstatisticsserver.app.statistics.service.StatisticsService;
+import com.ruunivstatisticsserver.app.statistics.service.interfaces.StatisticsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

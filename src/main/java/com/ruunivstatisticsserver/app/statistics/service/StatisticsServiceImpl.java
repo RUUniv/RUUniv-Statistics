@@ -7,6 +7,7 @@ import com.ruunivstatisticsserver.app.statistics.entity.Api;
 import com.ruunivstatisticsserver.app.statistics.entity.Method;
 import com.ruunivstatisticsserver.app.statistics.entity.Statistics;
 import com.ruunivstatisticsserver.app.statistics.entity.StatisticsDetail;
+import com.ruunivstatisticsserver.app.statistics.service.interfaces.StatisticsService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Slf4j
-public class StatisticsService {
+public class StatisticsServiceImpl implements StatisticsService {
     private final MongoTemplate mongoTemplate;
 
     public StatisticsMonthInfo getStatisticsInfoByMonth(String apiKey, int month) {

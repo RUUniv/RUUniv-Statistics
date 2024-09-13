@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @WritingConverter
 class LocalDateTimeToDateKstConverter implements Converter<LocalDateTime, Date> {
 
-
     @Override
     public Date convert(LocalDateTime source) {
         return Timestamp.valueOf(source.plusHours(9L));
