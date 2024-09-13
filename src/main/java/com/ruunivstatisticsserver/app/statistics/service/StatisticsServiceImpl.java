@@ -8,6 +8,7 @@ import com.ruunivstatisticsserver.app.statistics.entity.Method;
 import com.ruunivstatisticsserver.app.statistics.entity.Statistics;
 import com.ruunivstatisticsserver.app.statistics.entity.StatisticsDetail;
 import com.ruunivstatisticsserver.app.statistics.service.interfaces.StatisticsService;
+import com.ruunivstatisticsserver.common.error.statistics.StatisticsNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,10 @@ public class StatisticsServiceImpl implements StatisticsService {
         );
 
         StatisticsDetail detail = mongoTemplate.findOne(query, StatisticsDetail.class);
+
+        if (detail == null) {
+            throw new StatisticsNotFoundException();
+        }
 
         List<StatisticsStatusPerApiMonthInfo> perApiInfo = detail.getPerApiInfo().stream()
                 .map(info -> new StatisticsStatusPerApiMonthInfo(info.getApi(), info.getTotalApiRequestCount()))
