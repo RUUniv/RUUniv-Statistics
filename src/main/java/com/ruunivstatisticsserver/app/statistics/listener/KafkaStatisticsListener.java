@@ -22,7 +22,7 @@ public class KafkaStatisticsListener {
         log.info("[Kafka Listener] : COLLECT_STATISTICS START");
         CollectStatisticsEvent event = objectMapper.readValue(payload, CollectStatisticsEvent.class);
 
-        statisticsService.collectionStatistics(event.getApiUrl(), event.getMethod(),
+        statisticsService.collectStatistics(event.getApiUrl(), event.getMethod(),
                 event.getStatus(), event.getApiKey());
     }
 }

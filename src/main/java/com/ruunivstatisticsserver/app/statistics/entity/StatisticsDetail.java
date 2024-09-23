@@ -29,7 +29,6 @@ public class StatisticsDetail extends BaseTimeEntity implements Serializable {
     public StatisticsDetail(String apiKey, int month) {
         this.apiKey = apiKey;
         this.month = month;
-        this.perApiInfo = new ArrayList<>();
     }
 
     public void addPerApiInfo(Api api) {

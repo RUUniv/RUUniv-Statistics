@@ -6,5 +6,5 @@ import com.ruunivstatisticsserver.app.statistics.dto.StatisticsResponse.Statisti
 public interface StatisticsService {
     StatisticsMonthInfo getStatisticsInfoByMonth(String apiKey, int month);
 
-    StatisticsInfo collectionStatistics(String apiUrl, String method, int status, String apiKey);
+    StatisticsInfo collectStatistics(String apiUrl, String method, int status, String apiKey);
 }

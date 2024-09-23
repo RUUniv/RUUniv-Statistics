@@ -35,7 +35,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         return new StatisticsMonthInfo(detail.getApiKey(), detail.getMonth(), perApiInfo);
     }
 
-    public StatisticsInfo collectionStatistics(String apiUrl, String method, int status, String apiKey) {
+    public StatisticsInfo collectStatistics(String apiUrl, String method, int status, String apiKey) {
         Statistics statistics = Statistics.builder()
                 .api(Api.createByUrlAndMethod(apiUrl, method))
                 .method(Method.valueOf(method))
